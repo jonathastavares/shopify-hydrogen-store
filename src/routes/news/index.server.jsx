@@ -12,7 +12,7 @@ import {ArticleCard, Grid, PageHeader} from '~/components';
 import {Layout} from '~/components/index.server';
 import {getImageLoadingPriority, PAGINATION_SIZE} from '~/lib/const';
 
-const BLOG_HANDLE = 'Journal';
+const BLOG_HANDLE = 'news';
 
 export default function Blog({pageBy = PAGINATION_SIZE, response}) {
   response.cache(CacheLong());

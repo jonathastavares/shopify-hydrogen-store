@@ -18,6 +18,8 @@ export function Footer({menu}) {
       : menu?.items?.length + 1
     : [];
 
+  const SHOP_NAME = Oxygen?.env?.STORE_NAME || "Hydra Core"; 
+
   return (
     <Section
       divider={isHome ? 'none' : 'top'}
@@ -37,8 +39,7 @@ export function Footer({menu}) {
       <div
         className={`self-end pt-8 opacity-50 md:col-span-2 lg:col-span-${itemsCount}`}
       >
-        &copy; {new Date().getFullYear()} / Shopify, Inc. Hydrogen is an MIT
-        Licensed Open Source project. This website is carbon&nbsp;neutral.
+        &copy; {new Date().getFullYear() + ' ' + SHOP_NAME}
       </div>
     </Section>
   );

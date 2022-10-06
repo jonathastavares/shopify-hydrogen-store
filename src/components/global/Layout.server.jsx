@@ -7,9 +7,7 @@ import {parseMenu} from '~/lib/utils';
 
 const HEADER_MENU_HANDLE = 'main-menu';
 const FOOTER_MENU_HANDLE = 'footer';
-
-const SHOP_NAME_FALLBACK = 'Hydrogen';
-
+const SHOP_NAME = Oxygen?.env?.STORE_NAME || "Hydra Core"; 
 /**
  * A server component that defines a structure and organization of a page that can be used in different parts of the Hydrogen app
  */
@@ -22,7 +20,7 @@ export function Layout({children}) {
             Skip to content
           </a>
         </div>
-        <Suspense fallback={<Header title={SHOP_NAME_FALLBACK} />}>
+        <Suspense fallback={<Header title={SHOP_NAME} />}>
           <HeaderWithMenu />
         </Suspense>
         <main role="main" id="mainContent" className="flex-grow">
@@ -62,7 +60,7 @@ function useLayoutQuery() {
     preload: '*',
   });
 
-  const shopName = data ? data.shop.name : SHOP_NAME_FALLBACK;
+  const shopName = SHOP_NAME;
 
   /*
         Modify specific links/routes (optional)

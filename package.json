@@ -1,6 +1,6 @@
 {
   "name": "hydra-demo-store",
-  "description": "Demo store template for @shopify/hydrogen",
+  "description": "Fetchly Hydra Core",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
