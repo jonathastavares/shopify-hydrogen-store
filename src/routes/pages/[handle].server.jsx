@@ -10,6 +10,7 @@ import {Suspense} from 'react';
 
 import {PageHeader} from '~/components';
 import {NotFound, Layout} from '~/components/index.server';
+import {ContactForm} from '~/components';
 
 export default function Page({params}) {
   const {
@@ -46,6 +47,7 @@ export default function Page({params}) {
           className="prose dark:prose-invert"
         />
       </PageHeader>
+      <ContactForm />
     </Layout>
   );
 }
