@@ -75,10 +75,10 @@ export function AccountRecoverForm() {
               }}
             />
             {!emailError ? (
-              ''
+             ''
             ) : (
               <p className={`text-red-500 text-xs`}>{emailError} &nbsp;</p>
-            )}
+            )} 
           </div>
           <div className="flex items-center justify-between">
             <button
