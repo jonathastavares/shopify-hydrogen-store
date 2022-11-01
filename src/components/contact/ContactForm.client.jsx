@@ -86,7 +86,8 @@ export function ContactForm() {
     event.preventDefault();
     const isValid = handleValidation(event);
     if (isValid) {
-      const response = await fetchSync('api/sendGrid', requestBody);
+      // const response = await fetchSync('api/sendGrid', requestBody);
+      alert("TODO send email")
       if (response.ok) {
         console.log('OK');
       } else {
