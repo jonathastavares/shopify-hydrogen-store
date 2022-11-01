@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {emailValidation} from '~/lib/utils';
 import {getInputStyleClasses} from '../../lib/styleUtils';
+import {fetchSync} from '@shopify/hydrogen';
 
 export function ContactForm() {
   const initialState = {
@@ -52,14 +53,48 @@ export function ContactForm() {
     return true;
   };
 
-  async function onSubmit(event) {
+  // const getRequestBody = () => {
+  //   const request = {
+  //     body: JSON.stringify({
+  //       firstname: firstName,
+  //       lastname: lastName,
+  //       email,
+  //       subject,
+  //       message,
+  //     }),
+  //     headers: {'Content-Type': 'application/json', lado: 'puti'},
+  //     method: 'POST',
+  //   };
+  //   return request;
+  // };
+
+  const requestBody = {
+    method: 'POST',
+    body: JSON.stringify({
+      firstname: firstName,
+      lastname: lastName,
+      email,
+      subject,
+      message,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const onSubmit = async (event) => {
     event.preventDefault();
     const isValid = handleValidation(event);
     if (isValid) {
-      // TODO: send sendgrid email
-      alert('form submitted');
+      const response = await fetchSync('api/sendGrid', requestBody);
+      if (response.ok) {
+        console.log('OK');
+      } else {
+        const {error} = await response.json();
+        console.log('ERORR', error);
+      }
     }
-  }
+  };
 
   return (
     <form
