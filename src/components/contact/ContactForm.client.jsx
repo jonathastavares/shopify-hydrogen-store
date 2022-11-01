@@ -71,14 +71,15 @@ export function ContactForm() {
     event.preventDefault();
     const isValid = handleValidation(event);
     if (isValid) {
-      const response = await (
-        await fetch('../api/sendGrid', requestBody)
-      ).json();
-      if (response.status === 200) {
-        alert('Email sent');
-      } else {
-        console.log('Error', response.error);
-      }
+      alert('TODO send mail');
+      //   const response = await (
+      //     await fetch('../api/sendGrid', requestBody)
+      //   ).json();
+      //   if (response.status === 200) {
+      //     alert('Email sent');
+      //   } else {
+      //     console.log('Error', response.error);
+      //   }
     }
   };
 
