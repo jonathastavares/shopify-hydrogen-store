@@ -53,21 +53,6 @@ export function ContactForm() {
     return true;
   };
 
-  // const getRequestBody = () => {
-  //   const request = {
-  //     body: JSON.stringify({
-  //       firstname: firstName,
-  //       lastname: lastName,
-  //       email,
-  //       subject,
-  //       message,
-  //     }),
-  //     headers: {'Content-Type': 'application/json', lado: 'puti'},
-  //     method: 'POST',
-  //   };
-  //   return request;
-  // };
-
   const requestBody = {
     method: 'POST',
     body: JSON.stringify({
@@ -86,13 +71,13 @@ export function ContactForm() {
     event.preventDefault();
     const isValid = handleValidation(event);
     if (isValid) {
-      // const response = await fetchSync('api/sendGrid', requestBody);
-      alert("TODO send email")
-      if (response.ok) {
-        console.log('OK');
+      const response = await (
+        await fetch('../api/sendGrid', requestBody)
+      ).json();
+      if (response.status === 200) {
+        alert('Email sent');
       } else {
-        const {error} = await response.json();
-        console.log('ERORR', error);
+        console.log('Error', response.error);
       }
     }
   };
