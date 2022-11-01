@@ -53,21 +53,6 @@ export function ContactForm() {
     return true;
   };
 
-  // const getRequestBody = () => {
-  //   const request = {
-  //     body: JSON.stringify({
-  //       firstname: firstName,
-  //       lastname: lastName,
-  //       email,
-  //       subject,
-  //       message,
-  //     }),
-  //     headers: {'Content-Type': 'application/json', lado: 'puti'},
-  //     method: 'POST',
-  //   };
-  //   return request;
-  // };
-
   const requestBody = {
     method: 'POST',
     body: JSON.stringify({
@@ -86,16 +71,14 @@ export function ContactForm() {
     event.preventDefault();
     const isValid = handleValidation(event);
     if (isValid) {
-      const response = fetchSync('api/sendGrid', requestBody);
-      console.log("RESPONSE", response);
-      // if (!response.ok) {
-      //   console.error(
-      //     `Unable to load top products ${response.url} returned a ${response.status}`,
-      //   );
-      //   return null;
-      // }
-
-      // const products = response.json();
+      const response = await (
+        await fetch('../api/sendGrid', requestBody)
+      ).json();
+      if (response.status === 200) {
+        alert('Email sent');
+      } else {
+        console.log('Error', response.error);
+      }
     }
   };
 

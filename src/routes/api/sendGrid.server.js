@@ -3,6 +3,7 @@ import sendgrid from '@sendgrid/mail';
 sendgrid.setApiKey(Oxygen?.env?.SENDGRID_API_TOKEN);
 // temp sender(from) email: sajan@fetch.ly 
 export async function api(req, res) {
+  console.log("I AM HERE")
   try {
     const body = await req.json();
     await sendgrid.send({
@@ -12,8 +13,8 @@ export async function api(req, res) {
       html: `<p>Message:</p>
       <p>${body?.message}</p>`,
     });
-    return {status: 200, error: ''};
   } catch (error) {
     return {status: 500, error: error.message};
   }
+  return {status: 200, error: ''};
 }
