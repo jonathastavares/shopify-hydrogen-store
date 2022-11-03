@@ -19,6 +19,14 @@ export function ContactForm() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState(initialState);
 
+  const clearInput = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setSubject('');
+    setMessage('');
+  };
+
   const handleValidation = (event) => {
     setError(initialState);
     const emptyInputError = "This field can't be empty";
@@ -72,10 +80,12 @@ export function ContactForm() {
     const isValid = handleValidation(event);
     if (isValid) {
       const response = await fetch(
-        '/.netlify/functions/sendmail',
+        'https://hydra-lamda.netlify.app/.netlify/functions/sendmail',
         requestBody,
       ).then((response) => response.json());
+      console.log('Res', response);
       if (response.status === 200) {
+        clearInput();
         alert('Email sent');
       } else {
         console.log('Error', response.error);
