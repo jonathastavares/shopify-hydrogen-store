@@ -1,5 +1,7 @@
 import {Suspense} from 'react';
 import renderHydrogen from '@shopify/hydrogen/entry-server';
+import {TranslationProvider} from './components/TranslationProvider.client';
+
 import {
   FileRoutes,
   PerformanceMetrics,
@@ -28,12 +30,14 @@ function App({request}) {
           <Suspense>
             <DefaultSeo />
           </Suspense>
-          <Router>
-            <FileRoutes
-              basePath={countryCode ? `/${countryCode}/` : undefined}
-            />
-            <Route path="*" page={<NotFound />} />
-          </Router>
+          <TranslationProvider>
+            <Router>
+              <FileRoutes
+                basePath={countryCode ? `/${countryCode}/` : undefined}
+              />
+              <Route path="*" page={<NotFound />} />
+            </Router>
+          </TranslationProvider>
         </CartProvider>
         <PerformanceMetrics />
         {import.meta.env.DEV && <PerformanceMetricsDebug />}

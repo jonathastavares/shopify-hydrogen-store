@@ -1,5 +1,6 @@
 import {Link, useUrl, useCart} from '@shopify/hydrogen';
 import {useWindowScroll} from 'react-use';
+import {useTranslation} from 'react-i18next';
 
 import {
   Heading,
@@ -18,6 +19,9 @@ import {useDrawer} from './Drawer.client';
  * A client component that specifies the content of the header on the website
  */
 export function Header({title, menu}) {
+  const {t, i18n} = useTranslation();
+  // i18n.changeLanguage('en');
+
   const {pathname} = useUrl();
 
   const localeMatch = /^\/([a-z]{2})(\/|$)/i.exec(pathname);
@@ -41,6 +45,7 @@ export function Header({title, menu}) {
     <>
       <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
       <MenuDrawer isOpen={isMenuOpen} onClose={closeMenu} menu={menu} />
+      <p>CHECK I18{t('welcome.title')}</p>
       <DesktopHeader
         countryCode={countryCode}
         isHome={isHome}
