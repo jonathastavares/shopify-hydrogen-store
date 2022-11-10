@@ -48,6 +48,7 @@ function HomepageContent() {
     preload: true,
   });
 
+
   const {heroBanners, featuredCollections, featuredProducts} = data;
 
   // fill in the hero banners with placeholders if they're missing

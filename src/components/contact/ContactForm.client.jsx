@@ -83,7 +83,6 @@ export function ContactForm() {
         'https://hydra-lamda.netlify.app/.netlify/functions/sendmail',
         requestBody,
       ).then((response) => response.json());
-      console.log('Res', response);
       if (response.status === 200) {
         clearInput();
         alert('Email sent');

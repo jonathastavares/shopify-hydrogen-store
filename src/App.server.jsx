@@ -19,13 +19,14 @@ function App({request}) {
   const pathname = new URL(request.normalizedUrl).pathname;
   const localeMatch = /^\/([a-z]{2})(\/|$)/i.exec(pathname);
   const countryCode = localeMatch ? localeMatch[1] : undefined;
+  const languageCode = localeMatch ? localeMatch[1] : undefined;
 
   const isHome = pathname === `/${countryCode ? countryCode + '/' : ''}`;
 
   return (
     <Suspense fallback={<HeaderFallback isHome={isHome} />}>
       <EventsListener />
-      <ShopifyProvider countryCode={countryCode}>
+      <ShopifyProvider countryCode={countryCode} languageCode={languageCode}>
         <CartProvider countryCode={countryCode}>
           <Suspense>
             <DefaultSeo />
