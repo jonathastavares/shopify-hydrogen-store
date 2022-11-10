@@ -5,15 +5,19 @@ import {Listbox} from '@headlessui/react';
 
 import {IconCheck, IconCaret} from '~/components';
 import {useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
 
 /**
  * A client component that selects the appropriate country to display for products on a website
  */
 export function CountrySelector() {
+  const {i18n} = useTranslation();
   const [listboxOpen, setListboxOpen] = useState(false);
+  
   const {
     country: {isoCode},
   } = useLocalization();
+
   const currentCountry = useMemo(() => {
     const regionNamesInEnglish = new Intl.DisplayNames(['en'], {
       type: 'region',
@@ -29,6 +33,7 @@ export function CountrySelector() {
     ({isoCode: newIsoCode}) => {
       const currentPath = window.location.pathname;
       let redirectPath;
+      i18n.changeLanguage(newIsoCode.toLowerCase());
 
       if (newIsoCode !== 'US') {
         if (currentCountry.isoCode === 'US') {
