@@ -17,6 +17,7 @@
     "test:ci": "yarn build -t node && vitest run"
   },
   "devDependencies": {
+    "@netlify/hydrogen-platform": "^1.1.2",
     "@shopify/cli": "3.15.0",
     "@shopify/cli-hydrogen": "3.15.0",
     "@shopify/prettier-config": "^1.1.2",
@@ -36,6 +37,7 @@
   "prettier": "@shopify/prettier-config",
   "dependencies": {
     "@headlessui/react": "^1.7.0",
+    "@sendgrid/mail": "^7.7.0",
     "@shopify/hydrogen": "^1.4.3",
     "clsx": "^1.1.1",
     "graphql-tag": "^2.12.6",
