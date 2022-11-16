@@ -4,6 +4,8 @@ import {useLocalization, useShopQuery, CacheLong, gql} from '@shopify/hydrogen';
 import {Header} from '~/components';
 import {Footer} from '~/components/index.server';
 import {parseMenu} from '~/lib/utils';
+import { GoogleAnalytics } from '../analytics/GoogleAnalytics.client';
+import {GoogleTagManager} from '../analytics/GoogleTagManager.client'
 
 const HEADER_MENU_HANDLE = 'main-menu';
 const FOOTER_MENU_HANDLE = 'footer';
@@ -24,6 +26,8 @@ export function Layout({children}) {
         <Suspense fallback={<Header title={SHOP_NAME_FALLBACK} />}>
           <HeaderWithMenu />
         </Suspense>
+        <GoogleAnalytics />
+        {/* <GoogleTagManager /> */}
         <main role="main" id="mainContent" className="flex-grow">
           {children}
         </main>
