@@ -1,4 +1,5 @@
 const client = require('@sendgrid/mail');
+// TODO: replace with actual api keys
 const SENDGRID_API_KEY =
   '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';
 const SENDGRID_TO_EMAIL = 'sajanbasnet75@gmail.com';
