@@ -79,16 +79,17 @@ export function ContactForm() {
     event.preventDefault();
     const isValid = handleValidation(event);
     if (isValid) {
-      const response = await fetch(
-        'https://hydra-lamda.netlify.app/.netlify/functions/sendmail',
-        requestBody,
-      ).then((response) => response.json());
-      if (response.status === 200) {
-        clearInput();
-        alert('Email sent');
-      } else {
-        console.log('Error', response.error);
-      }
+      // const response = await fetch(
+      //   'https://hydra-lamda.netlify.app/.netlify/functions/sendmail',
+      //   requestBody,
+      // ).then((response) => response.json());
+      // if (response.status === 200) {
+      //   clearInput();
+      //   alert('Email sent');
+      // } else {
+      //   console.log('Error', response.error);
+      // }
+      console.log('SENDING EMAIL');
     }
   };
 
