@@ -1,3 +1,4 @@
+'use client';
 import {Suspense} from 'react';
 import {
   gql,
@@ -21,6 +22,7 @@ import {
   Section,
   Text,
 } from '~/components';
+import {DraggableVideoBall} from '../../components/product/DraggableVideoBall.client';
 
 export default function Product() {
   const {handle} = useRouteParams();
@@ -57,6 +59,11 @@ export default function Product() {
 
   return (
     <Layout>
+      {product?.metafield?.reference?.sources?.[0]?.url && (
+        <DraggableVideoBall
+          videoUrl={product.metafield.reference?.sources[0]?.url}
+        />
+      )}
       <Suspense>
         <Seo type="product" data={product} />
       </Suspense>
@@ -163,6 +170,22 @@ const PRODUCT_QUERY = gql`
       seo {
         description
         title
+      }
+      metafield(namespace: "custom", key: "video_url") {
+        value
+        type
+        reference {
+          ... on MediaImage {
+            image {
+              url
+            }
+          }
+          ... on Video {
+            sources {
+              url
+            }
+          }
+        }
       }
     }
     shop {
